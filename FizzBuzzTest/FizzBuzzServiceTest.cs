@@ -49,6 +49,7 @@ namespace FizzBuzzTest
 
             var expectedResult = new FizzBuzzResponse(request, fizzBuzzList);
             expectedResult.DateTimeSignature = result.DateTimeSignature;
+            expectedResult.RandomNumber = result.RandomNumber;
 
             result.Should().BeEquivalentTo(expectedResult);
         }
@@ -73,7 +74,7 @@ namespace FizzBuzzTest
             };
             var expectedResult = new FizzBuzzResponse(request, fizzBuzzList);
 
-            string path = $@"C:\test\fizzBuzzList-{expectedResult.DateTimeSignature}.txt";
+            string path = $@"C:\test\fizzBuzzList-{expectedResult.DateTimeSignature:yyyyMMddhhmmssfff}-{expectedResult.RandomNumber}.txt";
 
             _fizzBuzzService.CreateFizzBuzzFile(expectedResult);
 

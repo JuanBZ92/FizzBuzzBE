@@ -57,8 +57,7 @@ namespace FizzBuzz.Services
                 _logger.LogInformation($"Creating file for fizzBuzzList with {fizzBuzzResponse.FizzBuzzList.Count} rows");
 
                 //Random number generated to handle concurrency.
-                Random rnd = new Random();
-                string path = $@"C:\test\fizzBuzzList-{fizzBuzzResponse.DateTimeSignature:yyyyMMddhhmmssfff}-{rnd.Next()}.txt";
+                string path = $@"C:\test\fizzBuzzList-{fizzBuzzResponse.DateTimeSignature:yyyyMMddhhmmssfff}-{fizzBuzzResponse.RandomNumber}.txt";
 
                 // Write the lines to the file
                 await File.WriteAllLinesAsync(path, fizzBuzzResponse.FizzBuzzList);
