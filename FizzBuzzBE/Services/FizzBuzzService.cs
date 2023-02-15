@@ -73,7 +73,7 @@ namespace FizzBuzz.Services
 
         }
 
-        private string CreateFolderAndPath(FizzBuzzResponse fizzBuzzResponse)
+        public string CreateFolderAndPath(FizzBuzzResponse fizzBuzzResponse)
         {
             string filePath = String.Empty;
             string folderName = "FizzBuzzFiles";
