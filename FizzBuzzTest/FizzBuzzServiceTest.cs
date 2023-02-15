@@ -74,7 +74,7 @@ namespace FizzBuzzTest
             };
             var expectedResult = new FizzBuzzResponse(request, fizzBuzzList);
 
-            string path = $@"C:\test\fizzBuzzList-{expectedResult.DateTimeSignature:yyyyMMddhhmmssfff}-{expectedResult.RandomNumber}.txt";
+            string path = _fizzBuzzService.CreateFolderAndPath(expectedResult);
 
             _fizzBuzzService.CreateFizzBuzzFile(expectedResult);
 
