@@ -7,5 +7,7 @@ namespace FizzBuzz.Services
         FizzBuzzResponse CreateFizzBuzzList(FizzBuzzRequest request);
 
         Task CreateFizzBuzzFile(FizzBuzzResponse fizzBuzzResponse);
+        
+        string CreateFolderAndPath(FizzBuzzResponse fizzBuzzResponse);
     }
 }
