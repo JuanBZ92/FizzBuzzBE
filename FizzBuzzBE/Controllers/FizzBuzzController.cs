@@ -23,9 +23,9 @@ namespace FizzBuzz.Controllers
         {
             try
             {
-                if (request.Limit == 0)
+                if (request.Limit <= 0)
                 {
-                    return BadRequest("Limit can´t be 0. Please use a number bigger than 1");
+                    return BadRequest("Limit can´t be less than 1. Please use a number bigger than 1");
                 }
 
                 var result = _fizzBuzzService.CreateFizzBuzzList(request);
