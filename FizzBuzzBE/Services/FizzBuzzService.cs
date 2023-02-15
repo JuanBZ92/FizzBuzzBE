@@ -56,11 +56,10 @@ namespace FizzBuzz.Services
             {
                 _logger.LogInformation($"Creating file for fizzBuzzList with {fizzBuzzResponse.FizzBuzzList.Count} rows");
 
-                //Random number generated to handle concurrency.
-                string path = $@"C:\test\fizzBuzzList-{fizzBuzzResponse.DateTimeSignature:yyyyMMddhhmmssfff}-{fizzBuzzResponse.RandomNumber}.txt";
+                var filePath = CreateFolderAndPath(fizzBuzzResponse);
 
                 // Write the lines to the file
-                await File.WriteAllLinesAsync(path, fizzBuzzResponse.FizzBuzzList);
+                await File.WriteAllLinesAsync(filePath, fizzBuzzResponse.FizzBuzzList);
 
                 _logger.LogInformation($"File created");
             }
@@ -69,6 +68,34 @@ namespace FizzBuzz.Services
                 throw;
             }
 
+        }
+
+        private string CreateFolderAndPath(FizzBuzzResponse fizzBuzzResponse)
+        {
+            string filePath = String.Empty;
+            string folderName = "FizzBuzzFiles";
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                string macOsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), folderName);
+                if (!System.IO.Directory.Exists(macOsPath))
+                {
+                    System.IO.Directory.CreateDirectory(macOsPath);
+                }
+                //Random number generated to handle concurrency.
+                filePath = $@"{macOsPath}/fizzBuzzList-{fizzBuzzResponse.DateTimeSignature:yyyyMMddhhmmssfff}-{fizzBuzzResponse.RandomNumber}.txt";
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                if (!System.IO.Directory.Exists($"C:\\{folderName}"))
+                {
+                    System.IO.Directory.CreateDirectory($"C:\\{folderName}");
+                }
+                //Random number generated to handle concurrency.
+                filePath = $@"C:\FizzBuzzFiles\fizzBuzzList-{fizzBuzzResponse.DateTimeSignature:yyyyMMddhhmmssfff}-{fizzBuzzResponse.RandomNumber}.txt";
+            }
+
+            return filePath;
         }
 
     }
