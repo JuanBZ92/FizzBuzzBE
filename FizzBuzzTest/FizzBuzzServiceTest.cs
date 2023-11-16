@@ -44,7 +44,7 @@ namespace FizzBuzzTest
                 "Fizz",
                 "13",
                 "14",
-                "FizzBuzz"
+                "FizzBuzze"
             };
 
             var expectedResult = new FizzBuzzResponse(request, fizzBuzzList);
