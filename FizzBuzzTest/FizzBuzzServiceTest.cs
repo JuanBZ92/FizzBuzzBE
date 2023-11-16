@@ -65,7 +65,7 @@ namespace FizzBuzzTest
 
             var fizzBuzzList = new List<string>()
             {
-                "Buzz",
+                "Buezz",
                 "11",
                 "Fizz",
                 "13",
